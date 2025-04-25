@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Labflox - Laboratory & Research Responsive HTML Template. Built with Bootstrap, HTML5, CSS3 and jQuery.">
+        <meta name="keywords" content="HTML, CSS, JavaScript, jQuery, Animation, Bootstrap, Font Awesome, Revolution Slider, Labflox, Portfolio">
+        <meta name="author" content="Themewar">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>智联网络实验室</title>
+
+        <!-- Start Include All CSS -->
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/animate.css"/>
+        <link rel="stylesheet" href="css/font-awesome.css"/>
+        <link rel="stylesheet" href="css/labflox-icon.css"/>
+        <link rel="stylesheet" href="css/owl.theme.default.min.css"/>
+        <link rel="stylesheet" href="css/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="css/slick.css">
+        <link rel="stylesheet" href="css/lightcase.css">
+        <link rel="stylesheet" href="css/preloader.css">
+        
+        <!-- Revolution Slider Setting CSS -->
+        <link rel="stylesheet" href="css/settings.css">
+
+        <link rel="stylesheet" href="css/preset.css"/>
+        <link rel="stylesheet" href="css/ignore_for_wp.css"/>
+        <link rel="stylesheet" href="css/theme.css"/>
+        <link rel="stylesheet" href="css/responsive.css"/>
+        <!-- End Include All CSS -->
+        <style>
+            /* 原有样式保持不变 */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            .video-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+                z-index: 1;
+            }
+    
+            #bg-video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    
+            .content {
+                position: relative;
+                z-index: 2;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px; /* 增加元素间距 */
+            }
+    
+            .title {
+                color: white;
+                font-size: 4rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
+    
+            /* 新增按钮样式 */
+            .video-btn {
+                padding: 15px 40px;
+                font-size: 1.5rem;
+                background: rgba(255, 255, 255, 0.2);
+                border: 2px solid white;
+                color: white;
+                border-radius: 30px;
+                cursor: pointer;
+                transition: all 0.3s;
+                backdrop-filter: blur(5px);
+            }
+    
+            .video-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.05);
+            }
+    
+            /* 模态框样式保持不变 */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 999;
+            }
+    
+            .modal-content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80%;
+                max-width: 800px;
+            }
+    
+            #modal-video {
+                width: 100%;
+                height: auto;
+            }
+    
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: white;
+                font-size: 40px;
+                cursor: pointer;
+            }
+            .video-link {
+                display: block;
+                position: relative;
+                transition: transform 0.3s;
+            }
+
+            .video-link:hover {
+                transform: scale(1.02);
+            }
+
+            .video-link::after {
+                content: "▶";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80px;
+                height: 80px;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 40px;
+                color: #333;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <!-- Preloader Start -->
+        <div class="preloader clock text-center">
+            <div class="labfloxLoader">
+                <div class="loaderO">
+                    <span>智</span>
+                    <span>联</span>
+                    <span>网</span>
+                    <span>络</span>
+                    <span>实</span>
+                    <span>验</span>
+                    <span>室</span>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Preloader End -->
+
+        <!-- Header Start -->
+        <header class="header01 isSticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="navArea">
+                            <div class="logo">
+                                <a href="index.html"><img src="images/logo1.png" alt="智联实验室logo" /></a>
+                            </div>
+                            <nav class="mainMenu">
+                                <ul>
+                                    <li><a href="index.html">主页</a></li>
+                                    <li><a href="research-single.html">项目研究</a></li>
+                                    <li><a href="team-single.html">教师团队</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header End -->
+        <div class="video-container">
+            <video id="bg-video" autoplay muted loop playsinline>
+                <source src="1.mp4" type="video/mp4">
+            </video>
+        </div>
+    
+        <div class="content">
+            <h1 class="title">智联网络实验室</h1>
+            <button class="video-btn" onclick="openModal()">点击视频</button>
+        </div>
+    
+        <!-- 模态框 -->
+        <div id="myModal" class="modal">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <div class="modal-content">
+              <a id="modal-link" href="http://xidian-zlwl.quickconnect.cn/d/s/1356A9BRsBU6UOuDfQhYy1IW1JxvwACC/Ed4JLbJ9Kc0NW_lSAFurxSfmnBtKW-PA-KLygJwQHOgw" class="video-link" target="_blank">
+                <img src="video-preview.jpg" alt="视频预览" style="width:100%">
+              </a>
+          </div>
+        </div>
+
+
+        <!-- Back To Top -->
+        <a href="javascript:void(0);" id="backtotop"><i class="fa fa-angle-double-up"></i></a>
+        <!-- Back To Top -->
+
+        <!-- Start Include All JS -->
+          <script>
+            function openModal() {
+                document.getElementById('myModal').style.display = "block";
+                document.getElementById('bg-video').pause();
+                
+                // 添加点击跳转逻辑（可选）
+                document.getElementById('modal-link').addEventListener('click', function(e) {
+                    if(window.innerWidth > 768) { // 桌面端直接跳转
+                        e.preventDefault();
+                        window.open(this.href, '_blank');
+                    }
+                    // 移动端保持默认行为
+                });
+            }
+        
+            function closeModal() {
+                document.getElementById('myModal').style.display = "none";
+                document.getElementById('bg-video').play();
+            }
+        
+            window.onclick = function(event) {
+                const modal = document.getElementById('myModal');
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+        </script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.appear.js"></script>
+        <script src="js/circle-progress.min.js"></script>
+        <script src="js/slick.js"></script>
+        <script src="js/lightcase.js"></script>
+        <script src="js/litepicker.js"></script>
+        
+        <!-- Slider Revolution Main Files -->
+        <script src="js/jquery.themepunch.tools.min.js"></script>
+        <script src="js/jquery.themepunch.revolution.min.js"></script>
+
+        <!-- Slider Revolution Extension -->
+        <script src="js/extensions/revolution.extension.actions.min.js"></script>
+        <script src="js/extensions/revolution.extension.carousel.min.js"></script>
+        <script src="js/extensions/revolution.extension.kenburn.min.js"></script>
+        <script src="js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script src="js/extensions/revolution.extension.migration.min.js"></script>
+        <script src="js/extensions/revolution.extension.navigation.min.js"></script>
+        <script src="js/extensions/revolution.extension.parallax.min.js"></script>
+        <script src="js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script src="js/extensions/revolution.extension.video.min.js"></script>
+
+        <script src="js/theme.js"></script>
+        <!-- End Include All JS -->
+    </body>
+</html>
