@@ -28,9 +28,83 @@
         <link rel="stylesheet" href="css/responsive.css"/>
         <!-- End Include All CSS -->
 
-        <!-- Favicon Icon -->
-        <!-- <link rel="icon"  type="image/png" href="images/favicon.png"> -->
-        <!-- Favicon Icon -->
+        <style>
+            /* 新增样式（与原有theme.css风格保持一致） */
+            .graduateSection {
+                padding: 80px 0;
+                background: #f8f9fa;
+            }
+
+            .graduateSection h2 {
+                color: #2c3e50;
+                font-size: 36px;
+                font-weight: 600;
+                position: relative;
+                padding-bottom: 15px;
+            }
+
+            .graduateSection h2:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: 3px;
+                background: #3498db;
+            }
+
+            .subTitle {
+                color: #7f8c8d;
+                font-size: 18px;
+                margin-top: 15px;
+            }
+
+            .graduateTableWrap {
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+                padding: 30px;
+            }
+
+            .table thead th {
+                border-bottom: 2px solid #3498db;
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            .table tbody td {
+                vertical-align: middle;
+                padding: 15px;
+                border-color: #f1f5f9;
+            }
+
+            .table-striped tbody tr:nth-of-type(odd) {
+                background-color: rgba(52, 152, 219, 0.05);
+            }
+
+            .table-hover tbody tr:hover {
+                background-color: rgba(52, 152, 219, 0.08);
+            }
+
+            @media (max-width: 767px) {
+                .graduateSection {
+                    padding: 40px 0;
+                }
+                
+                .graduateTableWrap {
+                    padding: 15px;
+                }
+                
+                .table thead th {
+                    font-size: 14px;
+                }
+                
+                .table tbody td {
+                    font-size: 14px;
+                }
+            }
+        </style>
     </head>
     <body>
         <!-- Preloader -->
@@ -60,7 +134,7 @@
                                 <ul>
                                     <li><a href="index.html">主页</a></li>
                                     <li><a href="research-single.html">项目研究</a></li>
-                                    <li><a href="team-single.html">教师团队</a></li>                                                                      
+                                    <li><a href="team-single.html">研究团队</a></li>                                                                      
                                 </ul>
                             </nav>
                             
@@ -82,7 +156,7 @@
                             <div class="pageBreadCum">
                                 <a href="index.html">主页</a>
                                 <i class="fa fa-angle-right"></i>
-                                <span>教师团队</span>
+                                <span>研究团队</span>
                             </div>
                         </div>
                     </div>
@@ -248,114 +322,105 @@
             </div>
         </div>
         <!-- Team End -->
-
-
-        <!-- Section Start -->
-        <!-- <footer class="footer01">
+        
+        <!-- Graduate Start -->
+        <section class="graduateSection">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="subscribeForm">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="sfLeft">
-                                        
-                                        <img src="images/icons/1.png" alt=""/>
-                                        <h3>
-                                            Get latest updates Subscribe 
-                                            to Our Newsletter
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <form method="post" action="#">
-                                        <input type="email" name="email" placeholder="Your Mail Address"/>
-                                        <button type="submit">Subscribe Now</button>
-                                    </form>
-                                </div>
-                            </div>
+                        <div class="pageBannerContent text-center mb-5" style="padding-top: 0px;">
+                            <h2 class="mb-4">研究生</h2>
+                            <!-- <p class="subTitle">研究方向与就业去向</p> -->
                         </div>
-                    </div>
-                </div>
-                <div class="row widgetRow">
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <div class="contactWidtetContent">
-                                <div class="footerLogo">
-                                    <a href="index.html"><img src="images/logo.png" alt="LabFlox"/></a>
-                                </div>
-                                <div class="cwcInfo">
-                                    <i class="laf-y4LP01"></i>
-                                    +91 458 654 528
-                                </div>
-                                <div class="cwcInfo">
-                                    <i class="laf-BqBcxz01"></i>
-                                    <a href="javascript:void(0);">info@example.com</a>
-                                </div>
-                                <div class="cwcInfo">
-                                    <i class="laf-A8AIr201"></i>
-                                    60 East 65th Street, NY
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <h3 class="widgetTitle">Our Pathology</h3>
-                            <ul>
-                                <li><a href="javascript:void(0);">Molecular Diagnostics</a></li>
-                                <li><a href="javascript:void(0);">Molecular Hematology</a></li>
-                                <li><a href="javascript:void(0);">Microbiology</a></li>
-                                <li><a href="javascript:void(0);">Transfusion Medicine</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <h3 class="widgetTitle">Services</h3>
-                            <ul>
-                                <li><a href="javascript:void(0);">Complete Blood Count</a></li> 
-                                <li><a href="javascript:void(0);">Comprehensive Metabolic Panel</a></li>
-                                <li><a href="javascript:void(0);">Cholesterol / Lipid Levels</a></li>
-                                <li><a href="javascript:void(0);">Liver Function Blood Test</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <h3 class="widgetTitle">Preparation tips</h3>
-                            <ul>
-                                <li><a href="javascript:void(0);">Before Your Blood Test</a></li>
-                                <li><a href="javascript:void(0);">What to Expect During the Draw</a></li>
-                                <li><a href="javascript:void(0);">Microbiology</a></li>
-                                <li><a href="javascript:void(0);">Transfusion Medicine</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyrightRow">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="siteInfo">© 2021 Labflox All rights reserved.</div>
-                                </div>
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="siteSocial">
-                                        <a href="javascript:void(0);"><i class="fa fa-facebook-square"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-github"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                </div>
+                        
+                        <div class="graduateTableWrap">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col" style="width: 30%;">姓名</th>
+                                            <th scope="col">研究方向 / 就业单位</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>张纹嘉</td>
+                                            <td>中兴通讯股份有限公司</td>
+                                        </tr>
+                                        <tr>
+                                            <td>黄宇飞</td>
+                                            <td>中国农业发展银行云南省分行</td>
+                                        </tr>
+                                        <tr>
+                                            <td>涂令城</td>
+                                            <td>比亚迪股份有限公司</td>
+                                        </tr>
+                                        <tr>
+                                            <td>郭宣智</td>
+                                            <td>中兴通讯股份有限公司</td>
+                                        </tr>
+                                        <tr>
+                                            <td>左晨月</td>
+                                            <td>合肥国轩高科</td>
+                                        </tr>
+                                        <tr>
+                                            <td>祝苏萍</td>
+                                            <td>华为技术有限公司</td>
+                                        </tr>
+                                        <tr>
+                                            <td>潘广川</td>
+                                            <td>美的集团股份有限公司</td>
+                                        </tr>
+                                        <tr>
+                                            <td>甘棚仪</td>
+                                            <td>电力系统安全与稳定</td>
+                                        </tr>
+                                        <tr>
+                                            <td>易凡</td>
+                                            <td>通信网络资源分配</td>
+                                        </tr>
+                                        <tr>
+                                            <td>孙榕泽</td>
+                                            <td>星地网络资源分配</td>
+                                        </tr>
+                                        <tr>
+                                            <td>陶金玉</td>
+                                            <td>通信资源分配</td>
+                                        </tr>
+                                        <tr>
+                                            <td>侯岚翔</td>
+                                            <td>多模态大模型</td>
+                                        </tr>
+                                        <tr>
+                                            <td>熊佳庆</td>
+                                            <td>多模态大模型</td>
+                                        </tr>
+                                        <tr>
+                                            <td>李斌</td>
+                                            <td>医学计算机视觉</td>
+                                        </tr>
+                                        <tr>
+                                            <td>郑豪</td>
+                                            <td>SLAM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>梁浩琪</td>
+                                            <td>SLAM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer> -->
-        <!-- Section End -->
+        </section>
+<!-- Graduate End -->
+
+
+
+
+      
         
         <!-- Back To Top -->
         <a href="javascript:void(0);" id="backtotop"><i class="fa fa-angle-double-up"></i></a>
