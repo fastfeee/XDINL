@@ -9,7 +9,7 @@
         <title>智联网络实验室</title>
 
         <!-- Start Include All CSS -->
-        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="bootstrap5/css/bootstrap.css"/>
         <link rel="stylesheet" href="css/animate.css"/>
         <link rel="stylesheet" href="css/font-awesome.css"/>
         <link rel="stylesheet" href="css/labflox-icon.css"/>
@@ -27,10 +27,239 @@
         <link rel="stylesheet" href="css/theme.css"/>
         <link rel="stylesheet" href="css/responsive.css"/>
         <!-- End Include All CSS -->
+        <style>
+          /* ===== 优化版网格系统 ===== */
+          .grid-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 30px; /* Gap between items */
+              padding: 30px 5%; /* Padding around the container */
+              max-width: 1600px; /* Max width of the grid */
+              margin: 0 auto; /* Center the grid */
+              justify-content: center; /* Center items if they don't fill a row */
+          }
+      
+          .research-link { /* Wrapper for modal trigger */
+            text-decoration: none;
+            color: inherit;
+            display: flex; /* Important for flex sizing to apply */
+            /* Default flex sizing for 2 columns, will be overridden by media queries */
+            flex: 0 0 calc(50% - 15px); /* Adjust for gap: (100% - gap) / 2 */
+          }
 
-        <!-- Favicon Icon -->
-        <!-- <link rel="icon"  type="image/png" href="images/favicon.png"> -->
-        <!-- Favicon Icon -->
+          .research-item {
+              position: relative;
+              border-radius: 12px;
+              overflow: hidden;
+              background: #f5f7fa;
+              transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+              width: 100%; /* Take full width of its flex container (.research-link) */
+              display: flex;
+              flex-direction: column;
+              /* Default height, will be overridden by media queries */
+              height: 250px; 
+              max-width: 500px; /* Default max-width, will be overridden */
+          }
+      
+          .image-container {
+              height: 167px; /* Default: Approx 2/3 of 250px height */
+              position: relative;
+              overflow: hidden; /* Ensure image scaling doesn't break rounded corners */
+          }
+      
+          .research-item img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 0.4s ease;
+          }
+      
+          .info-card {
+              padding: 15px 20px; /* Slightly reduced padding */
+              background: #fff;
+              flex-grow: 1; 
+              display: flex;
+              flex-direction: column;
+              justify-content: center; 
+          }
+      
+          .info-card h3 {
+              color: #1976d2;
+              margin-bottom: 8px; /* Reduced margin */
+              font-size: 1.15em; /* Default font size */
+              line-height: 1.3;
+          }
+      
+          .info-card p {
+              color: #666;
+              line-height: 1.4; /* Slightly reduced line height */
+              font-size: 0.85em; /* Default font size */
+              margin-bottom: 0; 
+          }
+      
+          .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(45deg, rgba(25,118,210,0.95), rgba(33,150,243,0.95));
+              opacity: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 20px; /* Reduced padding */
+              transition: all 0.4s ease;
+              text-align: center;
+          }
+      
+          .tech-desc {
+              color: #fff;
+              transform: translateY(20px);
+              transition: transform 0.3s ease 0.1s;
+          }
+      
+          .tech-desc h4 {
+              font-size: 1.3em; /* Default */
+              margin-bottom: 8px;
+              text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          }
+      
+          .tech-desc p {
+              font-size: 0.85em; /* Default */
+              line-height: 1.5;
+              opacity: 0.9;
+          }
+      
+          /* Hover effects */
+          .research-link:hover .research-item { /* Apply hover to link to affect item */
+              transform: translateY(-10px);
+              box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+          }
+          .research-link:hover .research-item img {
+              transform: scale(1.08);
+          }
+          .research-link:hover .research-item .overlay {
+              opacity: 1;
+          }
+          .research-link:hover .research-item .tech-desc {
+              transform: translateY(0);
+          }
+
+          /* ===== RESPONSIVE DESIGN (Layout remains as per your previous working version) ===== */
+
+          /* Mobile: <= 768px (Single column) */
+          @media (max-width: 768px) {
+              .research-link {
+                  flex: 1 1 100%; /* Single column */
+                  max-width: 500px; /* Max width for single column item */
+              }
+              .research-item {
+                  height: 250px; /* Height for single column item */
+                  margin-bottom: 25px; /* Add margin for stacked items */
+              }
+              .image-container {
+                  height: 167px; /* Approx 2/3 of 250px */
+              }
+              .info-card h3 { font-size: 1.2em; }
+              .info-card p { font-size: 0.9em; }
+              .overlay { display: none; } /* Hide overlay on mobile for simplicity */
+          }
+          
+          /* Desktop: 992px - 1200px (Two columns, slightly smaller reference size) */
+          @media (min-width: 992px) and (max-width: 1200px) {
+              .research-link { max-width: calc(50% - 15px); } 
+              .research-item {
+                  max-width: 450px; 
+                  height: 225px;
+              }
+              .image-container { height: 150px; } 
+              .info-card h3 { font-size: 1.1em; }
+              .info-card p { font-size: 0.8em; }
+              .tech-desc h4 { font-size: 1.2em; }
+              .tech-desc p { font-size: 0.8em; }
+          }
+
+          /* Larger Desktop: 1201px - 1450px (Two columns, larger items) */
+          @media (min-width: 1201px) and (max-width: 1450px) {
+              .research-link { max-width: calc(50% - 15px); }
+              .research-item {
+                  max-width: 600px; 
+                  height: 300px;
+              }
+              .image-container { height: 200px; } 
+              .info-card h3 { font-size: 1.25em; }
+              .info-card p { font-size: 0.9em; }
+              .tech-desc h4 { font-size: 1.5em; }
+              .tech-desc p { font-size: 0.9em; }
+          }
+          
+          /* Very Large Desktop: >= 1451px (Two columns, largest items) */
+          @media (min-width: 1451px) {
+              .research-link { max-width: calc(50% - 15px); }
+              .research-item {
+                  max-width: 700px; 
+                  height: 350px; 
+              }
+              .image-container { height: 233px; } 
+              .info-card h3 { font-size: 1.35em; }
+              .info-card p { font-size: 0.95em; }
+              .tech-desc h4 { font-size: 1.6em; }
+              .tech-desc p { font-size: 1em; }
+          }
+
+          /* Modal specific styles */
+          .modal-body img {
+            width: 100%;
+            max-height: 300px; 
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+          }
+          .modal-tech-details {
+            background-color: #eef2f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+          }
+          .modal-tech-details h5 {
+            color: #1976d2;
+            margin-bottom: 10px;
+          }
+          .modal-tech-details p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #555;
+          }
+          /* New section style for Key Achievements */
+          .modal-key-achievements {
+            background-color: #f0f8ff; /* Light AliceBlue */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #28a745; /* Green accent */
+          }
+          .modal-key-achievements h5 {
+            color: #28a745; /* Green to match border */
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+          .modal-key-achievements ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 0;
+            font-size: 0.9em;
+            color: #444;
+          }
+          .modal-key-achievements ul li {
+            margin-bottom: 5px;
+          }
+          </style>
+
     </head>
     <body>
         <!-- Preloader -->
@@ -63,15 +292,6 @@
                                     <li><a href="team-single.html">研究团队</a></li>                                                                                                                          
                                 </ul>
                             </nav>
-                            <!-- <div class="accessNav">
-                                <div class="phoneCall">
-                                    <i class="fa fa-phone"></i>
-                                    <span>24/7 Emergency Phone</span>
-                                    <h6>+36 55 540 069</h6>
-                                </div>
-                                <a href="appointment.html" class="lab_btn lightHover requestBTN"><span><i class="fa fa-calendar-plus-o"></i>Request Appointment</span></a>
-                                <a href="javascript:void(0);" class="menuBtn"><span><i class="fa fa-bars"></i>Menu</span></a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -85,8 +305,6 @@
                 <div class="row">
                     <div class="col-md-9 col-lg-7 col-xl-6">
                         <div class="pageBannerContent">
-                            <!-- <h5>Research Details</h5> -->
-                            <!-- <h2>系统性研究与持续创新，在关键领域产出高质量成果</h2> -->
                             <div class="pageBreadCum">
                                 <a href="index.html">主页</a>
                                 <i class="fa fa-angle-right"></i>
@@ -100,264 +318,174 @@
         <!-- Page Banner End -->
 
         <!-- Research Details Start -->
-        <section class="researchDetailSec">
+        <section class="researchDetailSec" style="padding: 40px 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="researchItems">
-                            <div class="serv_meta">
-                                <i class="laf-MjY3z001"></i> <h3>研究方向</h3>
-                                <p>智联网络实验室(INL)长期致力于智联网络理论、关键技术创新及应用等研究方向，在无人机、元宇宙、大语言模型、空间计算等领域取得了一批重要研究成果，形成了鲜明的研究特色和较强的综合实力。具体研发方向包括：无人机协同通信和数字孪生的技术应用；优化设计接入体系、网络切片策略；构建信通网络与AI使能技术的融合体系，促进泛在人工智能时代的信息通信网络的协同创新和综合应用；面向工业边缘智能和云平台纵深发展，对接产业需求，推动工业边缘智能、大数据分析、数字孪生、工业技术的成果转化。目前已成功研发低功耗蓝牙定位模块；建设工业数字孪生平台；具备边缘计算能力的云边端协同CPE设备等。</p>
-                            </div>
-                            <div class="serv_meta">
-                                <i class="laf-MjY3z001"></i> <h3>平台建设</h3>
-                                <p>实验室依托西安电子科技大学空天地一体化综合业务网全国重点实验室（ISN）广州分中心，核心平台包括工业数字孪生平台，通过融合大数据、云计算和AI技术，实现物理实体的数字化映射，支持实时监控、仿真优化及工业应用，如设备维护与无人机协同；云边端协同实验平台，依托自研的边缘计算CPE设备，整合云、边、端资源，验证低时延通信与分布式计算能力，服务于工业边缘智能与网络切片策略；无人机通信与数字孪生技术验证平台，以及低功耗蓝牙定位模块的开发平台。</p>
-                            </div>
-                            <div class="serv_meta">
-                                <i class="laf-MjY3z001"></i> <h3>科研能力</h3>
+                        <div class="grid-container">
+                            <!-- 高精度定位模块 -->
+                            <a href="#" class="research-link research-modal-trigger" 
                                
-                                <h4 class="lab_heading">高精度定位模块(华为火花奖)</h4> 
-                                <img decoding="async" src="images/research/1.png" alt="高精度定位" style="width: 100%;margin-bottom: 20px;">
-                               
-                                <h4 class="lab_heading">工业孪生云平台</h4> 
-                                <img decoding="async" src="images/research/2.png" alt="高精度定位" style="width: 100%;margin-bottom: 20px;">
-                              
-                                <h4 class="lab_heading">机狗协同系统</h4> 
-                                <img decoding="async" src="images/research/3.png" alt="高精度定位" style="width: 100%;margin-bottom: 20px;">
-                             
-                                <h4 class="lab_heading">无人机智能化</h4> 
-                                <img decoding="async" src="images/research/4.png" alt="高精度定位" style="width: 100%;margin-bottom: 20px;">
+                               data-image="images/research/1.png"
+                               data-title="高精度定位系统"
+                               data-description="自主研发的UWB定位技术，采用TDoA定位算法，支持多基站协同工作，适用于复杂工业环境下的精准位置服务。"
+                               data-tech-title="厘米级定位技术"
+                               data-tech-details="基于UWB的室内定位解决方案<br>动态精度±5cm<br>多基站协同定位<br>工业级防护设计"
+                               data-key-achievements="<li>通过华为技术认证</li><li>实现动态精度±5cm的稳定追踪</li><li>已在多个大型工厂及仓储物流场景成功部署与应用</li><li>荣获行业创新技术奖</li>">
+                                <div class="research-item">
+                                    <div class="image-container">
+                                        <img src="images/research/1.png" alt="高精度定位系统">
+                                        <div class="overlay">
+                                            <div class="tech-desc">
+                                                <h4>厘米级定位技术</h4>
+                                                <p>基于UWB的室内定位解决方案<br>
+                                                动态精度±5cm<br>
+                                                多基站协同定位<br>
+                                                工业级防护设计</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <h3>高精度定位系统</h3>
+                                        <p>自主研发的UWB定位技术，采用TDoA定位算法，支持多基站协同工作，适用于复杂工业环境下的精准位置服务。</p>
+                                    </div>
+                                </div>
+                            </a>
 
-                            </div>
-                            <div class="serv_meta">
-                                <i class="laf-MjY3z001"></i> <h3>技术应用</h3>
-                                <div style="overflow: auto;">
-                                    <div style="width: 50%; float: left;">
-                                        <h4 class="lab_heading">室内外快速感知与精准定位技术</h4> 
-                                        <p style="max-width: 80%;">该模组应用于人员安全定位场景，通过人员便携式终端实施示范，服务于基建的人员定位，为人员安全提供保障；基础设施高精度监测场景，通过杆塔倾斜和沉降监测终端实施示范；在电力巡检、低压电力设备故障精确定位等的推广应用。</p>                               
-                                        <img decoding="async" src="images/research/5.png" alt="高精度定位" style="width: 50%; margin-bottom: 20px;margin-left: 60px; display: block;">
-                                    </div>
-                                    <div style="width: 50%; float: left;">
-                                        <h4 class="lab_heading">基于数字孪生的无人机蜂群智能辅助管控技术</h4> 
-                                        <p style="max-width: 80%;">异构计算平台的资源动态管控；无人集群间动态协同处理（任务/通信/计算协同技术）</p>
-                                        <img decoding="async" src="images/research/6.png" alt="高精度定位" style="width: 40%; margin-bottom: 20px;margin-left: 60px;  display: block;">
-                                    </div>
-                                </div>  
-                                <div style="overflow: auto;">
-                                    <div style="width: 50%; float: left;">
-                                        <h4 class="lab_heading">云边协同网络智能技术</h4> 
-                                        <p style="max-width: 80%;">通过云边协同训练算法以及云边协同推理架构，构建农作物病虫害管理与预警系统。通过云边协同训练算法以及云边协同推理架构，构建农作物病虫害管理与预警系统。在保护家庭隐私的前提下，检测独居老人是否需要救助。基于云边协同学习技术对雾霾等级进行识别。</p>                               
-                                        <img decoding="async" src="images/research/7.png" alt="高精度定位" style="width: 50%; margin-bottom: 20px;margin-left: 60px;  display: block;">
-                                    </div>
-                                    <div style="width: 50%; float: left;">
-                                        <h4 class="lab_heading">时间敏感工业互联网络传输技术</h4> 
-                                        <p style="max-width: 80%;">针对TSN协议与实现进行了深入研究；掌握精准同步、流量控制监测与时间感知调度技术；实验室具备仿真与原型系统；与国内网络测试仪器行业龙头企业信尔泰合作进行TSN测试仪器产品化研究；TSN测试系统融入已有网络测试产品序列；直接测量TSN设备性能指标和协议符合度。</p>
-                                        <img decoding="async" src="images/research/8.png" alt="高精度定位" style="width: 40%; margin-bottom: 20px;margin-left: 60px;  display: block;">
-                                    </div>
-                                </div>                                             
-                            </div>
-                           
-                            <!-- <div class="researchCon">
-                                
-                                <h2 class="lab_heading">室内外快速感知与精准定位技术</h2>
-                                <p style="margin: 0;" class="lab_paragraph">该模组应用于人员安全定位场景，通过人员便携式终端实施示范，服务于基建的人员定位，为人员安全提供保障；基础设施高精度监测场景，通过杆塔倾斜和沉降监测终端实施示范；在电力巡检、低压电力设备故障精确定位等的推广应用。</p>
-                                <img decoding="async" src="images/research/r4-1140x650.jpg" alt="Labflox">
-                            </div> -->
-                           
-                                               
-                            <!-- <div class="featured_image featured_img_research">
-                                <img decoding="async" src="images/research/r4-1140x650.jpg" alt="Labflox">
-                            </div> -->
-                            <!-- <div class="galleryMeta">
-                                <div class="GMSingle">
-                                    <p>Project Name</p>
-                                    <h3>Laboratory Quality Control</h3>
-                                </div>
-                                <div class="GMSingle">
-                                    <p>Client</p>
-                                    <h3>Real Madrid C.F</h3>
-                                </div>
-                                <div class="GMSingle">
-                                    <p>RESEARCH TYPE</p>
-                                    <h3>Medicine</h3>
-                                </div>
-                                <div class="GMSingle">
-                                    <p> RESEARCH YEAR</p>
-                                    <h3>2019</h3>
-                                </div>
-                            </div>
-                            <div class="researchCon">
-                                <h2 class="lab_heading">Challenge &amp; Solution</h2>
-                                <p class="lab_paragraph">Being a top us private facility for any kind of scientific research, we are proud of the overall amount of work we`ve done so far. Excepteur sint occaecat cupidatat non rsive wellness company founded by Adam Gazzaley, Ph.D., and Alex Theory, Ph.D., The Vessel helps guests reset theirdolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <div class="iconBox04">
-                                    <i class="fa fa-hand-o-right"><span></span></i> <h5>Exerci tation ullamcorper suscipit lobortis</h5>
-                                    <p> Exerci tation ullamcorper suscipitorens lobortis nisl ut aliquip ex ea commodo. Exerci tation ullamcorper suscipitorens. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                </div>
-                                <div class="iconBox04">
-                                    <i class="fa fa-hand-o-right"><span></span></i> <h5>Occaecat sint occaecat suscipit dolore</h5>
-                                    <p> Exerci tation ullamcorper suscipitorens lobortis nisl ut aliquip ex ea commodo. Exerci tation ullamcorper suscipitorens. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                </div>
-                                <div class="iconBox04">
-                                    <i class="fa fa-hand-o-right"><span></span></i> <h5>Being a top us private facility for any kind</h5>
-                                    <p> Exerci tation ullamcorper suscipitorens lobortis nisl ut aliquip ex ea commodo. Exerci tation ullamcorper suscipitorens. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                                </div>
-                                <h2 class="lab_heading">Our Process</h2>
-                                <p class="lab_paragraph">As part of a new partnership with Sensync, an immersive wellness company founded by Adam Gazzaley, Ph.D., and Alex Theory, Ph.D., The Vessel helps guests reset their brains with a host of customized journeys: Deep Space, Kairos, Ocean Cove, Zen Garden, Quantum Oneness, Crystal Cave, Lost Jungle, and Floating Clouds. </p>
-                                <div class="researcBoxWrap">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="researcBox">
-                                                <span>01</span>
-                                                <h3> LAB TECHNICIANS</h3>
-                                                <p>This is a case of a patient with a history of dementia, worsened with an agitation.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="researcBox">
-                                                <span>02</span>
-                                                <h3> RESEARCH CENTER</h3>
-                                                <p>This is a case of a patient with a history of dementia, worsened with an agitation.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="researcBox">
-                                                <span>03</span>
-                                                <h3> OUR EXPERIENCE</h3>
-                                                <p>This is a case of a patient with a history of dementia, worsened with an agitation.</p>
+                            <!-- 数字孪生平台 -->
+                            <a href="#" class="research-link research-modal-trigger"
+                              
+                               data-image="images/research/2.png"
+                               data-title="智能孪生云平台"
+                               data-description="基于工业物联网的实时数字孪生解决方案，整合多源数据实现生产全流程可视化，支持设备健康度预测与工艺优化决策。"
+                               data-tech-title="工业数字孪生"
+                               data-tech-details="实时3D可视化引擎<br>百万级数据点同步<br>预测性维护系统<br>AI驱动决策分析"
+                               data-key-achievements=""> <!-- 为此项留空，JS会隐藏该区域 -->
+                                <div class="research-item">
+                                    <div class="image-container">
+                                        <img src="images/research/2.png" alt="工业数字孪生">
+                                        <div class="overlay">
+                                            <div class="tech-desc">
+                                                <h4>工业数字孪生</h4>
+                                                <p>实时3D可视化引擎<br>
+                                                百万级数据点同步<br>
+                                                预测性维护系统<br>
+                                                AI驱动决策分析</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="galleryTestimonial">
-                                    <div class="tmcsItem">
-                                        <p class="quatation">Laboflex is full and all encompassing, covering Clinical Pathology, Cytopathology, Clinical chemistry, Genetics.</p>
-                                        <h5 class="heebo">Anamika Roja</h5>
-                                        <h6 class="heebo">Student</h6>
+                                    <div class="info-card">
+                                        <h3>智能孪生云平台</h3>
+                                        <p>基于工业物联网的实时数字孪生解决方案，整合多源数据实现生产全流程可视化，支持设备健康度预测与工艺优化决策。</p>
                                     </div>
                                 </div>
-                            </div> -->
+                            </a>
+
+                            <!-- 机狗协同系统 -->
+                            <a href="#" class="research-link research-modal-trigger"
+                               
+                               data-image="images/research/3.png"
+                               data-title="人机协同作业系统"
+                               data-description="面向工业场景的智能协作系统，集成视觉导航与力控技术，实现人机安全协作，提升复杂工况下的作业效率。"
+                               data-tech-title="智能机狗协同"
+                               data-tech-details="多模态交互系统<br>动态路径规划<br>毫米波雷达感知<br>5G低时延通信"
+                               data-key-achievements="<li>大幅提升人机协作安全性评分</li><li>减少特定工序平均作业时间30%</li>">
+                                <div class="research-item">
+                                    <div class="image-container">
+                                        <img src="images/research/3.png" alt="机器人协同系统">
+                                        <div class="overlay">
+                                            <div class="tech-desc">
+                                                <h4>智能机狗协同</h4>
+                                                <p>多模态交互系统<br>
+                                                动态路径规划<br>
+                                                毫米波雷达感知<br>
+                                                5G低时延通信</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <h3>人机协同作业系统</h3>
+                                        <p>面向工业场景的智能协作系统，集成视觉导航与力控技术，实现人机安全协作，提升复杂工况下的作业效率。</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- 无人机集群 -->
+                            <a href="#" class="research-link research-modal-trigger"
+                               
+                               data-image="images/research/4.png"
+                               data-title="无人机集群系统"
+                               data-description="基于强化学习的无人机集群控制系统，支持复杂环境下的协同作业，具备自主充电和智能任务分配能力。"
+                               data-tech-title="智能无人机集群"
+                               data-tech-details="自主避障导航<br>分布式任务分配<br>长续航动力系统<br>4K图传中继"
+                               data-key-achievements=""> <!-- 为此项留空 -->
+                                <div class="research-item">
+                                    <div class="image-container">
+                                        <img src="images/research/4.png" alt="无人机集群">
+                                        <div class="overlay">
+                                            <div class="tech-desc">
+                                                <h4>智能无人机集群</h4>
+                                                <p>自主避障导航<br>
+                                                分布式任务分配<br>
+                                                长续航动力系统<br>
+                                                4K图传中继</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <h3>无人机集群系统</h3>
+                                        <p>基于强化学习的无人机集群控制系统，支持复杂环境下的协同作业，具备自主充电和智能任务分配能力。</p>
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
                     </div>
                 </div>
             </div>
         </section>
        
-        <!-- Research Details Start -->
-
-        <!-- Section Start -->
-        <!-- <footer class="footer01">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="subscribeForm">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="sfLeft">
-                                        
-                                        <img src="images/icons/1.png" alt=""/>
-                                        <h3>
-                                            Get latest updates Subscribe 
-                                            to Our Newsletter
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <form method="post" action="#">
-                                        <input type="email" name="email" placeholder="Your Mail Address"/>
-                                        <button type="submit">Subscribe Now</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row widgetRow">
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <div class="contactWidtetContent">
-                                <div class="footerLogo">
-                                    <a href="index.html"><img src="images/logo1.png" alt="LabFlox"/></a>
-                                </div>
-                                <div class="cwcInfo">
-                                    <i class="laf-y4LP01"></i>
-                                    +91 458 654 528
-                                </div>
-                                <div class="cwcInfo">
-                                    <i class="laf-BqBcxz01"></i>
-                                    <a href="javascript:void(0);">info@example.com</a>
-                                </div>
-                                <div class="cwcInfo">
-                                    <i class="laf-A8AIr201"></i>
-                                    60 East 65th Street, NY
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <h3 class="widgetTitle">Our Pathology</h3>
-                            <ul>
-                                <li><a href="javascript:void(0);">Molecular Diagnostics</a></li>
-                                <li><a href="javascript:void(0);">Molecular Hematology</a></li>
-                                <li><a href="javascript:void(0);">Microbiology</a></li>
-                                <li><a href="javascript:void(0);">Transfusion Medicine</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <h3 class="widgetTitle">Services</h3>
-                            <ul>
-                                <li><a href="javascript:void(0);">Complete Blood Count</a></li> 
-                                <li><a href="javascript:void(0);">Comprehensive Metabolic Panel</a></li>
-                                <li><a href="javascript:void(0);">Cholesterol / Lipid Levels</a></li>
-                                <li><a href="javascript:void(0);">Liver Function Blood Test</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <aside class="widget">
-                            <h3 class="widgetTitle">Preparation tips</h3>
-                            <ul>
-                                <li><a href="javascript:void(0);">Before Your Blood Test</a></li>
-                                <li><a href="javascript:void(0);">What to Expect During the Draw</a></li>
-                                <li><a href="javascript:void(0);">Microbiology</a></li>
-                                <li><a href="javascript:void(0);">Transfusion Medicine</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyrightRow">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="siteInfo">© 2021 Labflox All rights reserved.</div>
-                                </div>
-                                <div class="col-md-6 col-lg-6">
-                                    <div class="siteSocial">
-                                        <a href="javascript:void(0);"><i class="fa fa-facebook-square"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-github"></i></a>
-                                        <a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer> -->
-        <!-- Section End -->
-
         <!-- Back To Top -->
         <a href="javascript:void(0);" id="backtotop"><i class="fa fa-angle-double-up"></i></a>
         <!-- Back To Top -->
 
+        <!-- Research Detail Modal -->
+        <div class="modal fade" id="researchDetailModal" tabindex="-1" aria-labelledby="researchDetailModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="researchDetailModalLabel">项目详情</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="" id="modalImage" alt="Research Image" class="img-fluid mb-3">
+                        <h3 id="modalTitle" style="color: #1976d2;" class="mb-2"></h3>
+                        <p id="modalDescription" class="mb-3"></p>
+                        
+                        <!-- NEW: Key Achievements Section -->
+                        <div class="modal-key-achievements" style="display: none;"> <!-- Initially hidden, shown by JS if data exists -->
+                            <h5>关键成果</h5>
+                            <ul id="modalKeyAchievements"></ul>
+                        </div>
+
+                        <!-- Existing Technical Details Section -->
+                        <div class="modal-tech-details">
+                            <h5 id="modalTechTitle"></h5>
+                            <p id="modalTechDetails"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Start Include All JS -->
         <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="bootstrap5/js/bootstrap.min.js"></script>
+        <!-- Ensure Bootstrap JS (v5+) is loaded for modal functionality -->
+        <!-- <script src="js/bootstrap.min.js"></script>  -->
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.appear.js"></script>
         <script src="js/circle-progress.min.js"></script>
@@ -381,5 +509,58 @@
 
         <script src="js/theme.js"></script>
         <!-- End Include All JS -->
+
+        <script>
+        $(document).ready(function() {
+            // Handle click event for research items to populate and show modal
+            $('.research-modal-trigger').on('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+
+                // Get data from data-* attributes of the clicked <a> tag
+                var imageSrc = $(this).data('image');
+                var title = $(this).data('title');
+                var description = $(this).data('description');
+                var techTitle = $(this).data('tech-title');
+                var techDetails = $(this).data('tech-details');
+                var keyAchievements = $(this).data('key-achievements'); // Get new data
+
+                // Populate the modal elements
+                $('#modalImage').attr('src', imageSrc);
+                $('#modalTitle').text(title);
+                $('#modalDescription').html(description); 
+                $('#modalTechTitle').text(techTitle);
+                $('#modalTechDetails').html(techDetails);
+
+                // Populate or hide the Key Achievements section
+                var $keyAchievementsContainer = $('.modal-key-achievements'); // Cache container
+                var $keyAchievementsList = $('#modalKeyAchievements');
+
+                if (keyAchievements && keyAchievements.trim() !== '') {
+                    $keyAchievementsList.html(keyAchievements); // Assumes keyAchievements is HTML (e.g., <li>items</li>)
+                    $keyAchievementsContainer.show();
+                } else {
+                    $keyAchievementsList.empty();
+                    $keyAchievementsContainer.hide();
+                }
+
+                // Show the modal using Bootstrap's jQuery plugin
+                // (Assumes bootstrap.min.js includes this plugin, common for Bootstrap 4/5 with jQuery)
+                $('#researchDetailModal').modal('show');
+            });
+
+            // Optional: Clear modal content when it's hidden to prevent brief display of old data on next open
+            $('#researchDetailModal').on('hidden.bs.modal', function () {
+                // $('#modalImage').attr('src', ''); // Or a placeholder
+                // $('#modalTitle').text('');
+                // $('#modalDescription').html('');
+                // $('#modalTechTitle').text('');
+                // $('#modalTechDetails').html('');
+                // $('#modalKeyAchievements').empty();
+                // $('.modal-key-achievements').hide();
+                // You can uncomment the lines above if you notice a flash of old content.
+                // For most cases, immediate repopulation on 'show' is sufficient.
+            });
+        });
+        </script>
     </body>
 </html>
